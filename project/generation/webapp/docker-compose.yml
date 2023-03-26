@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  database:
+    image: mysql:8.0.32-debian
+    container_name: 'database'
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+  webapp:
+    container_name: 'webapp'
+    build: app
+    restart: unless-stopped
+    volumes:
+      - ./app:/usr/src/app
+    ports:
+      - 5001:5000
+    env_file:
+      - .env
+    depends_on:
+      - database
