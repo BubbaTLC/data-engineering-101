@@ -9,6 +9,7 @@ ENV PYTHONUNBUFFERED 1
 ENV FLASK_APP /usr/app/src/app.py
 
 # Install app dependencies
+# poetry export --output requirements.txt --without-hashes
 COPY ./requirements.txt ./
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
