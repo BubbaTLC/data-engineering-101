@@ -5,5 +5,3 @@ if [ ! -d "/home/vscode/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then
 fi
 
 cp ./.devcontainer/scripts/files/zshrc_template ~/.zshrc
-
-git add .github/.pre-commit-config.yml 
