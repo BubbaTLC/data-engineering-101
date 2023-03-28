@@ -1,54 +1,63 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/alpine
 {
-	"name": "DataEngineering101",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/base:jammy",
-	"features": {
-		"ghcr.io/devcontainers/features/common-utils:2": {},
-		"ghcr.io/devcontainers/features/python:1": {
-			"installTools": true,
-			"version": "3.9"
-		},
-		"ghcr.io/devcontainers/features/docker-in-docker:2": {
-			"moby": true,
-			"azureDnsAutoDetection": true,
-			"installDockerBuildx": true,
-			"version": "latest"
-		},
-		"ghcr.io/devcontainers/features/git:1": {
-			"ppa": true,
-			"version": "latest"
-		},
-		"ghcr.io/devcontainers/features/terraform": {},
-		"ghcr.io/dhoeric/features/terraform-docs": {},
-		"ghcr.io/devcontainers-contrib/features/poetry": {}
-		},
-	"customizations": {
-		"vscode": {
-			"extensions": [
-				"njpwerner.autodocstring",
-				"samuelcolvin.jinjahtml",
-				"streetsidesoftware.code-spell-checker",
-				"IronGeek.vscode-env",
-				"ms-python.flake8",
-				"ms-python.isort",
-				"ms-python.vscode-pylance",
-				"ms-python.python",
-				"albert.TabOut",
-				"bastienboutonnet.vscode-dbt",
-				"redhat.vscode-yaml"
-			]
-		}
-	},
-	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
-	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "chmod u+x ./.devcontainer/scripts/setup.sh && ./.devcontainer/scripts/setup.sh"
-	// Configure tool-specific properties.
-	// "customizations": {},
-	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "root"
+  "name": "DataEngineering101",
+  // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+  "image": "mcr.microsoft.com/devcontainers/base:jammy",
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {},
+    "ghcr.io/devcontainers/features/python:1": {
+      "installTools": true,
+      "version": "3.9"
+    },
+    "ghcr.io/devcontainers/features/docker-outside-of-docker": {},
+    "ghcr.io/devcontainers/features/git:1": {
+      "ppa": true,
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/terraform": {},
+    "ghcr.io/dhoeric/features/terraform-docs": {},
+    "ghcr.io/devcontainers-contrib/features/poetry": {},
+    "ghcr.io/devcontainers-contrib/features/mypy": {},
+    "ghcr.io/devcontainers-contrib/features/flake8": {},
+    "ghcr.io/devcontainers-contrib/features/pre-commit": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "njpwerner.autodocstring",
+        "samuelcolvin.jinjahtml",
+        "streetsidesoftware.code-spell-checker",
+        "IronGeek.vscode-env",
+        "ms-python.flake8",
+        "ms-python.isort",
+        "ms-python.vscode-pylance",
+        "ms-python.python",
+        "albert.TabOut",
+        "bastienboutonnet.vscode-dbt",
+        "redhat.vscode-yaml",
+        "mtxr.sqltools",
+        "mtxr.sqltools-driver-pg",
+        "mtxr.sqltools-driver-mysql"
+      ]
+    }
+  },
+  "mounts": [
+    "source=projectname-bashhistory,target=/commandhistory,type=volume"
+  ],
+  "runArgs": [
+    "--name", "data-eng-101-dev-environment",
+    "--network", "data_eng_101",
+    "--ip", "172.20.0.2"
+  ],
+  // Features to add to the dev container. More info: https://containers.dev/features.
+  // "features": {},
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [5000],
+  // Use 'postCreateCommand' to run commands after the container is created.
+  "postCreateCommand": "chmod u+x ./.devcontainer/scripts/setup.sh && ./.devcontainer/scripts/setup.sh"
+  // Configure tool-specific properties.
+  // "customizations": {},
+  // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+  // "remoteUser": "root"
 }

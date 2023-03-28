@@ -104,3 +104,5 @@ DISABLE_UPDATE_PROMPT=true
 
 alias src="source ~/.zshrc"
 alias home="cd /workspaces/data-engineering-101"
+
+HISTFILE=/commandhistory/.zsh_history
