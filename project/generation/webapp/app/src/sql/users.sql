@@ -1,5 +1,6 @@
+DROP TABLE users;
 CREATE TABLE users (
-    UserID int NOT NULL,
+    UserID int NOT NULL AUTO_INCREMENT,
     CompanyID int NOT NULL,
     FirstName varchar(50) NOT NULL,
     LastName varchar(50) NOT NULL,
